@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                    <p class="mt-2 text-sm text-gray-600">Login sebagai <strong>{{ Auth::user()->name }}</strong> dengan role <strong>{{ Auth::user()->role }}</strong>.</p>
                 </div>
             </div>
         </div>
