@@ -82,6 +82,20 @@ test('isbn 10 and hyphenated isbn 13 are accepted and normalized', function (str
     ['080442957x', '080442957X'],
 ]);
 
+test('non text input is rejected instead of crashing', function () {
+    $this->post('/books', validBookData(['title' => ['x'], 'isbn' => ['x']]))
+        ->assertSessionHasErrors([
+            'title' => 'Judul buku harus berupa teks.',
+            'isbn' => 'ISBN harus berupa teks.',
+        ]);
+
+    $this->post('/authors', ['name' => ['x'], 'email' => 'a@example.com', 'bio' => ['x']])
+        ->assertSessionHasErrors([
+            'name' => 'Nama penulis harus berupa teks.',
+            'bio' => 'Bio harus berupa teks.',
+        ]);
+});
+
 test('duplicate isbn is rejected even when written with hyphens', function () {
     Book::factory()->create(['isbn' => '9789793062792']);
 

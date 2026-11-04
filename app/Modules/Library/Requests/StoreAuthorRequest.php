@@ -30,11 +30,13 @@ class StoreAuthorRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama penulis wajib diisi.',
+            'name.string' => 'Nama penulis harus berupa teks.',
             'name.max' => 'Nama penulis maksimal 255 karakter.',
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
             'email.max' => 'Email maksimal 255 karakter.',
             'email.unique' => 'Email sudah digunakan oleh penulis lain.',
+            'bio.string' => 'Bio harus berupa teks.',
             'bio.max' => 'Bio maksimal 1000 karakter.',
         ];
     }

@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('isbn')->unique();
-            $table->year('published_year');
+            $table->unsignedSmallInteger('published_year');
             $table->decimal('price', 10, 2);
             $table->integer('stock')->default(0);
             $table->foreignId('author_id')->constrained()->restrictOnDelete();

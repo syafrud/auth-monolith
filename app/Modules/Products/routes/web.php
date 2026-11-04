@@ -9,6 +9,6 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     // Route uji custom exception InsufficientStockException (modul 4.10 poin 3)
     Route::get('products/{product}/reduce-stock/{quantity}', [ProductController::class, 'reduceStock'])
-        ->whereNumber('quantity')
+        ->where('quantity', '[1-9][0-9]{0,8}')
         ->name('products.reduce-stock');
 });

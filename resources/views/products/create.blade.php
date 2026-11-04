@@ -38,7 +38,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="price" class="block text-sm font-medium text-gray-700">Harga</label>
-                            <input type="number" name="price" id="price" value="{{ old('price') }}"
+                            <input type="number" step="0.01" name="price" id="price" value="{{ old('price') }}"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             @error('price')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

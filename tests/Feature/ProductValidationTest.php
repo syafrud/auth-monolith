@@ -134,11 +134,53 @@ test('reducing stock within availability decrements stock', function () {
     expect($product->fresh()->stock)->toBe(3);
 });
 
-test('negative quantity does not match the reduce stock route', function () {
+test('invalid quantity does not match the reduce stock route', function (string $quantity) {
     $user = User::factory()->create();
     $product = createProduct();
 
     $this->actingAs($user)
-        ->get("/products/{$product->id}/reduce-stock/-2")
+        ->get("/products/{$product->id}/reduce-stock/{$quantity}")
         ->assertNotFound();
+})->with(['-2', '0', '99999999999999999999']);
+
+test('empty slug uses an indonesian message and unknown fields are ignored', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->post('/products', ['category_ids' => [1]])
+        ->assertSessionHasErrors(['slug' => 'Slug produk wajib diisi.']);
+});
+
+test('product detail and edit pages can be rendered', function () {
+    $user = User::factory()->create();
+    $product = createProduct();
+
+    $this->actingAs($user)->get("/products/{$product->id}")->assertOk()->assertSee('Laptop');
+    $this->actingAs($user)->get("/products/{$product->id}/edit")->assertOk()->assertSee('laptop');
+});
+
+test('product can be updated while keeping its own slug', function () {
+    $user = User::factory()->create();
+    $product = createProduct();
+
+    $this->actingAs($user)
+        ->put("/products/{$product->id}", [
+            'name' => 'Laptop Baru',
+            'slug' => 'laptop',
+            'price' => 8000000,
+            'stock' => 2,
+        ])
+        ->assertRedirect(route('products.index'))
+        ->assertSessionHasNoErrors();
+
+    expect($product->fresh()->name)->toBe('Laptop Baru');
+});
+
+test('updating a product with an empty name is rejected', function () {
+    $user = User::factory()->create();
+    $product = createProduct();
+
+    $this->actingAs($user)
+        ->put("/products/{$product->id}", ['name' => ''])
+        ->assertSessionHasErrors(['name' => 'Nama produk wajib diisi.']);
 });

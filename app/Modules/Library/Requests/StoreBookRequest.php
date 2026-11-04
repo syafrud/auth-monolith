@@ -17,9 +17,9 @@ class StoreBookRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        if ($this->filled('isbn')) {
+        if (is_string($this->input('isbn'))) {
             $this->merge([
-                'isbn' => strtoupper(str_replace(['-', ' '], '', (string) $this->input('isbn'))),
+                'isbn' => strtoupper(str_replace(['-', ' '], '', $this->input('isbn'))),
             ]);
         }
     }
@@ -31,7 +31,7 @@ class StoreBookRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'isbn' => ['required', 'string', new Isbn, 'unique:books,isbn'],
+            'isbn' => ['bail', 'required', 'string', new Isbn, 'unique:books,isbn'],
             'published_year' => ['required', 'integer', 'min:1900', 'max:'.date('Y')],
             'price' => ['required', 'numeric', 'min:0'],
             'stock' => ['required', 'integer', 'min:0'],
@@ -46,8 +46,10 @@ class StoreBookRequest extends FormRequest
     {
         return [
             'title.required' => 'Judul buku wajib diisi.',
+            'title.string' => 'Judul buku harus berupa teks.',
             'title.max' => 'Judul buku maksimal 255 karakter.',
             'isbn.required' => 'ISBN wajib diisi.',
+            'isbn.string' => 'ISBN harus berupa teks.',
             'isbn.unique' => 'ISBN sudah digunakan oleh buku lain.',
             'published_year.required' => 'Tahun terbit wajib diisi.',
             'published_year.integer' => 'Tahun terbit harus berupa bilangan bulat.',

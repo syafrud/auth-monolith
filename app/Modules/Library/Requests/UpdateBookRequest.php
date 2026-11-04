@@ -14,7 +14,7 @@ class UpdateBookRequest extends StoreBookRequest
     {
         return [
             ...parent::rules(),
-            'isbn' => ['required', 'string', new Isbn, Rule::unique('books', 'isbn')->ignore($this->route('book'))],
+            'isbn' => ['bail', 'required', 'string', new Isbn, Rule::unique('books', 'isbn')->ignore($this->route('book'))],
         ];
     }
 }

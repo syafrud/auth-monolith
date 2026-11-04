@@ -52,9 +52,9 @@
                                 <td class="py-3 px-6 text-right">Rp {{ number_format($product->price, 2, ',', '.') }}</td>
                                 <td class="py-3 px-6 text-center">{{ $product->stock }}</td>
                                 <td class="py-3 px-6 text-center">
-                                    <div class="flex item-center justify-center space-x-2">
-                                        {{-- Tombol Edit (bisa ditambahkan nanti) --}}
-                                        <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Edit</a>
+                                    <div class="flex items-center justify-center space-x-2">
+                                        <a href="{{ route('products.show', $product) }}" class="text-gray-600 hover:text-gray-800 font-semibold">Detail</a>
+                                        <a href="{{ route('products.edit', $product) }}" class="text-blue-500 hover:text-blue-700 font-semibold">Edit</a>
 
                                         {{-- Form Hapus --}}
                                         <form action="{{ route('products.destroy', $product->id)}}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
