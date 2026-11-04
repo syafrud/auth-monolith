@@ -3,7 +3,10 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
 use Modules\Auth\Middleware\RoleMiddleware;
+use Modules\Library\Exceptions\AuthorHasBooksException;
+use Modules\Library\Exceptions\BookNotAvailableException;
 use Modules\Products\Exceptions\InsufficientStockException;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -22,6 +25,14 @@ return Application::configure(basePath: dirname(__DIR__))
             InsufficientStockException $e,
             $request
         ) {
+            return $e->render($request);
+        });
+
+        $exceptions->render(function (BookNotAvailableException $e, Request $request) {
+            return $e->render($request);
+        });
+
+        $exceptions->render(function (AuthorHasBooksException $e, Request $request) {
             return $e->render($request);
         });
     })
