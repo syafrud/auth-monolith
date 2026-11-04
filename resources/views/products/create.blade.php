@@ -29,7 +29,7 @@
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="slug" class="block text-sm font-medium text-gra7-700">Slug</label>
+                            <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
                             <input type="text" name="slug" id="slug" value="{{ old('slug') }}"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             @error('slug')
@@ -37,7 +37,7 @@
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="price" class="block text-sm font-medium text-gra7-700">Harga</label>
+                            <label for="price" class="block text-sm font-medium text-gray-700">Harga</label>
                             <input type="number" name="price" id="price" value="{{ old('price') }}"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             @error('price')
@@ -45,7 +45,7 @@
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="stock" class="block text-sm font-medium text-gra7-700">Stok</label>
+                            <label for="stock" class="block text-sm font-medium text-gray-700">Stok</label>
                             <input type="number" name="stock" id="stock" value="{{ old('stock') }}"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                             @error('stock')
@@ -53,7 +53,7 @@
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="description" class="block text-sm font-medium text-gra7-700">Deskripsi</label>
+                            <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi</label>
                             <textarea name="description" id="description" rows="4"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">{{ old('description') }}</textarea>
                             @error('description')
