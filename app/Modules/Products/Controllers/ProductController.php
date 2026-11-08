@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Modules\Products\Models\Product;
 use Modules\Products\Requests\StoreProductRequest;
 use Modules\Products\Requests\UpdateProductRequest;
-use Modules\Products\Exceptions\InsufficientStockException;
+use Modules\Shared\Exceptions\InsufficientStockException;
 
 class ProductController extends Controller
 {
