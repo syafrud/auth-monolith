@@ -1,0 +1,38 @@
+<?php
+
+namespace Modules\Library\Catalog\Models;
+
+use Database\Factories\BookCategoryFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class BookCategory extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name', 'slug', 'parent_id'];
+
+    protected static function newFactory(): BookCategoryFactory
+    {
+        return BookCategoryFactory::new();
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(BookCategory::class, 'parent_id');
+    }
+
+    public function children(): HasMany
+    {
+        return $this->hasMany(BookCategory::class, 'parent_id');
+    }
+
+    public function books(): BelongsToMany
+    {
+        return $this->belongsToMany(Book::class, 'book_book_category')
+            ->withPivot('added_at');
+    }
+}
