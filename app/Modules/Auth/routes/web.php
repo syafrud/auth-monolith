@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Modules\Auth\Controllers\AdminDashboardController;
 
@@ -11,7 +12,6 @@ Route::middleware(['web', 'auth', 'role:admin'])->group(function () {
 
 // Route untuk user biasa (memerlukan login)
 Route::middleware(['web', 'auth'])->group(function () {
-    Route::get('/user/dashboard', function () {
-        return view('dashboard');
-    })->name('user.dashboard');
+    Route::get('/user/dashboard', DashboardController::class)
+        ->name('user.dashboard');
 });
