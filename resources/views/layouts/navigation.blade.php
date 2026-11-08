@@ -20,6 +20,15 @@
                             {{ __('Panel Admin') }}
                         </x-nav-link>
                     @endif
+                    <x-nav-link :href="route('library.books.index')" :active="request()->routeIs('library.books.*')">
+                        {{ __('Buku') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('library.members.index')" :active="request()->routeIs('library.members.*')">
+                        {{ __('Anggota') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('library.loans.index')" :active="request()->routeIs('library.loans.*')">
+                        {{ __('Peminjaman') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -80,6 +89,15 @@
                     {{ __('Panel Admin') }}
                 </x-responsive-nav-link>
             @endif
+            <x-responsive-nav-link :href="route('library.books.index')" :active="request()->routeIs('library.books.*')">
+                {{ __('Buku') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('library.members.index')" :active="request()->routeIs('library.members.*')">
+                {{ __('Anggota') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('library.loans.index')" :active="request()->routeIs('library.loans.*')">
+                {{ __('Peminjaman') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
