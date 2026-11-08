@@ -35,5 +35,8 @@ class DatabaseSeeder extends Seeder
                 ['added_at' => now()]
             );
         });
+
+        // Sistem perpustakaan (tugas pertemuan 6)
+        $this->call(LibrarySeeder::class);
     }
 }
