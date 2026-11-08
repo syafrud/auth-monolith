@@ -41,7 +41,7 @@ class Book extends Model
     protected function isbn(): Attribute
     {
         return Attribute::make(
-            set: fn(string $value): string => (new Isbn($value))->getValue(),
+            set: fn (string $value): string => (new Isbn($value))->getValue(),
         );
     }
 
@@ -70,8 +70,8 @@ class Book extends Model
     {
         return $query->where(function (Builder $query) use ($keyword) {
             $query->where('title', 'like', "%{$keyword}%")
-                ->orWhere('isbn', 'like', '%' . str_replace('-', '', $keyword) . '%')
-                ->orWhereHas('author', fn(Builder $author) => $author->where('name', 'like', "%{$keyword}%"));
+                ->orWhere('isbn', 'like', '%'.str_replace('-', '', $keyword).'%')
+                ->orWhereHas('author', fn (Builder $author) => $author->where('name', 'like', "%{$keyword}%"));
         });
     }
 

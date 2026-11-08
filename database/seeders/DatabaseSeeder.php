@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Modules\Products\Models\Product;
-use Modules\Products\Models\Category;
-use Modules\Auth\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Modules\Auth\Models\Role;
+use Modules\Products\Models\Category;
+use Modules\Products\Models\Product;
 
 class DatabaseSeeder extends Seeder
 {

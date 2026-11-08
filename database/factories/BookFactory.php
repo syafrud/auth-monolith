@@ -25,6 +25,6 @@ class BookFactory extends Factory
 
     public function outOfStock(): static
     {
-        return $this->state(fn(): array => ['stock' => 0]);
+        return $this->state(fn (): array => ['stock' => 0]);
     }
 }

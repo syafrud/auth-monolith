@@ -28,7 +28,7 @@ class BookCatalogService implements BookCatalogInterface
         return Book::available()
             ->orderBy('title')
             ->get(['id', 'title', 'stock'])
-            ->map(fn(Book $book): array => [
+            ->map(fn (Book $book): array => [
                 'id' => $book->id,
                 'title' => $book->title,
                 'stock' => $book->stock,

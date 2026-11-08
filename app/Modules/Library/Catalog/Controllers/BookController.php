@@ -21,10 +21,10 @@ class BookController extends Controller
 
         $books = Book::query()
             ->with(['author', 'publisher', 'categories'])
-            ->when($showTrashed, fn($query) => $query->onlyTrashed())
-            ->when($request->filled('q'), fn($query) => $query->search($request->string('q')->toString()))
-            ->when($request->filled('category'), fn($query) => $query->inCategory($request->integer('category')))
-            ->when($request->boolean('available'), fn($query) => $query->available())
+            ->when($showTrashed, fn ($query) => $query->onlyTrashed())
+            ->when($request->filled('q'), fn ($query) => $query->search($request->string('q')->toString()))
+            ->when($request->filled('category'), fn ($query) => $query->inCategory($request->integer('category')))
+            ->when($request->boolean('available'), fn ($query) => $query->available())
             ->orderBy('title')
             ->paginate(10)
             ->withQueryString();

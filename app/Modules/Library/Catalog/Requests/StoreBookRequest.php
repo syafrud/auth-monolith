@@ -42,7 +42,7 @@ class StoreBookRequest extends FormRequest
             ],
             'author_id' => ['required', 'integer', 'exists:authors,id'],
             'publisher_id' => ['nullable', 'integer', 'exists:publishers,id'],
-            'published_year' => ['required', 'integer', 'min:1900', 'max:' . date('Y')],
+            'published_year' => ['required', 'integer', 'min:1900', 'max:'.date('Y')],
             'stock' => ['required', 'integer', 'min:0'],
             'category_ids' => ['nullable', 'array'],
             'category_ids.*' => ['integer', 'exists:book_categories,id'],
